@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/.vercel/
+frontend/next-env.d.ts
+
+# Python
+agent-service/.venv/
+agent-service/venv/
+agent-service/__pycache__/
+agent-service/**/__pycache__/
+agent-service/*.egg-info/
+agent-service/.pytest_cache/
+agent-service/.mypy_cache/
+agent-service/.ruff_cache/
+agent-service/htmlcov/
+agent-service/.coverage
+
+# Env files (never commit secrets)
+.env
+.env.local
+.env.*.local
+frontend/.env
+frontend/.env.local
+agent-service/.env
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
