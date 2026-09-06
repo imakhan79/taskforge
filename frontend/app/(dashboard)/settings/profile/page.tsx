@@ -3,6 +3,7 @@ import { requireCurrentOrg } from "@/lib/data/organization";
 import { ProfileForm } from "@/components/settings/profile-form";
 
 export const metadata: Metadata = { title: "Profile" };
+export const dynamic = "force-dynamic";
 
 export default async function ProfilePage() {
   const org = await requireCurrentOrg();

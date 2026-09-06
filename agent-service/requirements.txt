@@ -1,0 +1,13 @@
+strands-agents==1.54.0
+anthropic==1.4.0
+google-genai==2.22.0
+fastapi==0.141.1
+uvicorn[standard]==0.52.4
+pydantic==2.13.5
+pydantic-settings==2.15.0
+supabase==2.31.0
+httpx==0.28.1
+croniter==6.2.4
+python-dotenv==1.2.3
+pytest==9.1.1
+pytest-asyncio==1.4.0
