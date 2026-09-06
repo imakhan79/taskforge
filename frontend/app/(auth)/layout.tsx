@@ -1,6 +1,11 @@
 import Link from "next/link";
 import { Bot } from "lucide-react";
 
+// These pages branch on session state (redirect if signed in/out) and must
+// never be statically prerendered — see the matching note in
+// app/(dashboard)/layout.tsx.
+export const dynamic = "force-dynamic";
+
 export default function AuthLayout({ children }: LayoutProps<"/">) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-muted/30 px-6 py-12">

@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { CreateOrganizationForm } from "@/components/onboarding/create-organization-form";
 
 export const metadata: Metadata = { title: "Create your organization" };
+export const dynamic = "force-dynamic";
 
 export default async function OnboardingPage() {
   const supabase = await createClient();

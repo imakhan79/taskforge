@@ -2,6 +2,13 @@ import { requireCurrentOrg } from "@/lib/data/organization";
 import { DashboardSidebar } from "@/components/dashboard/sidebar";
 import { DashboardTopbar } from "@/components/dashboard/topbar";
 
+// Every page under this layout is session-gated and reads live data —
+// never statically prerender any of them (also works around a Next 16.3.4
+// Turbopack static-generation-worker bug seen on this build: an
+// "Expected workStore to be initialized" invariant intermittently hit
+// individual leaf pages under this dynamic layout).
+export const dynamic = "force-dynamic";
+
 export default async function DashboardLayout({ children }: LayoutProps<"/">) {
   const org = await requireCurrentOrg();
 
