@@ -11,7 +11,12 @@ import type { NextConfig } from "next";
 const projectRoot = fs.realpathSync.native(__dirname);
 
 const nextConfig: NextConfig = {
-  output: "standalone",
+  // "standalone" produces the self-contained server bundle the Dockerfile
+  // copies into its runner stage (see Dockerfile: COPY .next/standalone).
+  // Vercel's own builder expects the regular traced .next output to build
+  // its serverless functions from, and fails the build when "standalone" is
+  // set, so only apply it outside Vercel's build environment.
+  ...(process.env.VERCEL ? {} : { output: "standalone" as const }),
   allowedDevOrigins: ["127.0.0.1", "localhost"],
   turbopack: {
     root: projectRoot,
