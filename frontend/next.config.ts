@@ -1,17 +1,20 @@
-import path from "node:path";
+import fs from "node:fs";
 import type { NextConfig } from "next";
+
+// Resolve against the filesystem's true on-disk casing rather than
+// __dirname's casing. __dirname inherits whatever case the invoking shell's
+// cwd happened to use (e.g. Git Bash lowercases "Taskforge" to "taskforge"),
+// which can differ from the real NTFS-preserved name. On case-insensitive
+// filesystems (Windows) that mismatch corrupts webpack/Turbopack's
+// module-identity cache and throws "Expected workStore to be initialized"
+// during static generation.
+const projectRoot = fs.realpathSync.native(__dirname);
 
 const nextConfig: NextConfig = {
   output: "standalone",
   allowedDevOrigins: ["127.0.0.1", "localhost"],
-  // Pins the workspace root to this package explicitly. Without this, Next
-  // walks up from cwd looking for a lockfile/git root and can resolve a
-  // differently-cased path than the one Node started with on
-  // case-insensitive filesystems (Windows), which corrupts webpack's
-  // module-identity cache and throws "Expected workStore to be
-  // initialized" during static generation.
   turbopack: {
-    root: path.resolve(__dirname),
+    root: projectRoot,
   },
 };
 
